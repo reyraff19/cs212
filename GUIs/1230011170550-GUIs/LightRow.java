@@ -10,13 +10,13 @@ public class LightRow implements ActionListener {
     int row = Integer.valueOf(inputValue);
     JButton[] buttons = new JButton[row];
     Container contentPane = window.getContentPane();
-    Color[] Colors = { Color.RED, Color.BLUE };
+    Color[] Colors = { Color.GREEN, Color.MAGENTA };
 
     public Color invert(Color background) {
-        if (background.equals(Color.BLUE)) {
-            return Color.RED;
+        if (background.equals(Color.GREEN)) {
+            return Color.MAGENTA;
         }
-        return Color.BLUE;
+        return Color.GREEN;
     }
 
     public static void main(String[] args) {
