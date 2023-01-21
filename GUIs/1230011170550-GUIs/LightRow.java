@@ -34,7 +34,6 @@ public class LightRow implements ActionListener {
             buttons[i] = button;
             buttons[i].setBackground(Colors[((int) (Math.random() * 2))]);
             buttons[i].addActionListener(this);
-
         }
 
     }
@@ -43,12 +42,13 @@ public class LightRow implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton source = (JButton) e.getSource();
         for (int i = 0; i < row; i++) {
-            if (source == buttons[0]) {
-                buttons[0].setBackground(invert(buttons[0].getBackground()));
-                buttons[1].setBackground(invert(buttons[1].getBackground()));
+
+            if (source == buttons[0] && i == 0) {
+                buttons[i].setBackground(invert(buttons[0].getBackground()));
+                buttons[i + 1].setBackground(invert(buttons[1].getBackground()));
             }
 
-            else if (source == buttons[row - 1]) {
+            else if (source == buttons[row - 1] && i == row - 1) {
                 buttons[row - 1].setBackground(invert(buttons[row - 1].getBackground()));
                 buttons[row - 2].setBackground(invert(buttons[row - 2].getBackground()));
 
