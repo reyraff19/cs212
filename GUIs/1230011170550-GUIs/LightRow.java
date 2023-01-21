@@ -35,7 +35,6 @@ public class LightRow implements ActionListener {
             buttons[i].setBackground(Colors[((int) (Math.random() * 2))]); // Sets each button to be a random color,
                                                                            // between the color green and magenta.
             buttons[i].addActionListener(this); // When the button is pressed, it will then follow the actionPerformed.
-            buttons[i].setOpaque(true);
         }
 
     }
