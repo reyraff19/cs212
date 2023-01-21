@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.*; // Reyaad Raffik CS212
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -35,6 +35,7 @@ public class LightRow implements ActionListener {
             buttons[i].setBackground(Colors[((int) (Math.random() * 2))]); // Sets each button to be a random color,
                                                                            // between the color green and magenta.
             buttons[i].addActionListener(this); // When the button is pressed, it will then follow the actionPerformed.
+            buttons[i].setOpaque(true);
         }
 
     }
@@ -43,27 +44,25 @@ public class LightRow implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton source = (JButton) e.getSource(); // Will retrieve the source of the button that was pressed.
         for (int i = 0; i < row; i++) {
-
-            if (source == buttons[0] && i == 0) { // If the first button is pressed, it will invert the color of the
-                                                  // button pressed and the button adjacent to it.
-                buttons[i].setBackground(invert(buttons[0].getBackground()));
-                buttons[i + 1].setBackground(invert(buttons[1].getBackground()));
+            if (source == buttons[i]) {
+                if (i == 0) {
+                    // If the first button is pressed, it will invert the color of the button
+                    // pressed and the button adjacent to it.
+                    buttons[i].setBackground(invert(buttons[0].getBackground()));
+                    buttons[i + 1].setBackground(invert(buttons[1].getBackground()));
+                } else if (i == row - 1) {
+                    // If the last button is pressed, it will invert the color of the last button
+                    // and the button adjacent to it.
+                    buttons[row - 1].setBackground(invert(buttons[row - 1].getBackground()));
+                    buttons[row - 2].setBackground(invert(buttons[row - 2].getBackground()));
+                } else {
+                    // If it is any other button pressed, it will change the color of that button
+                    // and the buttons adjacent to it.
+                    buttons[i].setBackground(invert(buttons[i].getBackground()));
+                    buttons[i - 1].setBackground(invert(buttons[i - 1].getBackground()));
+                    buttons[i + 1].setBackground(invert(buttons[i + 1].getBackground()));
+                }
             }
-
-            else if (source == buttons[row - 1] && i == row - 1) { // If the last button is pressed, it will invert the
-                                                                   // color of the last button and the button adjacent
-                                                                   // to it.
-                buttons[row - 1].setBackground(invert(buttons[row - 1].getBackground()));
-                buttons[row - 2].setBackground(invert(buttons[row - 2].getBackground()));
-
-            } else if (buttons[i] == source) { // If it is any other button pressed, it will change the color of that
-                                               // button and the buttons adjacent to it.
-                buttons[i].setBackground(invert(buttons[i].getBackground()));
-                buttons[i - 1].setBackground(invert(buttons[i - 1].getBackground()));
-                buttons[i + 1].setBackground(invert(buttons[i + 1].getBackground()));
-
-            }
-
         }
     }
 
